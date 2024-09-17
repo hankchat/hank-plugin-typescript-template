@@ -4,7 +4,7 @@ import { hank, HandleCommandInput, HandleMessageInput } from "@hank.chat/pdk";
 export * from "@hank.chat/pdk";
 
 hank.pluginMetadata = Metadata.create({
-  name: "sample-plugin",
+  name: "sample-typescript-plugin",
   description: "A sample plugin to demonstrate some functionality.",
   version: "0.1.0",
   database: true,
