@@ -2,7 +2,7 @@
   "name": "hank-plugin-typescript-template",
   "version": "0.1.0",
   "description": "A template for Hank plugins written in TypeScript.",
-  "exports": "src/index.ts",
+  "exports": "./src/index.ts",
   "scripts": {
     "build": "tsc --noEmit && tsup && extism-js dist/index.js -i node_modules/@hank.chat/pdk/dist/plugin.d.ts -o dist/plugin.wasm"
   },
@@ -11,7 +11,7 @@
   "license": "BSD-3-Clause",
   "devDependencies": {
     "@extism/js-pdk": "^1.0.1",
-    "@hank.chat/pdk": "^0.1.1",
+    "@hank.chat/pdk": "^0.1.2-0",
     "@hank.chat/types": "^0.1.19",
     "tsup": "^8.3.0",
     "typescript": "^5.3.2"
