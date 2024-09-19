@@ -23,6 +23,17 @@ function install() {
 
 function initialize() {
   console.log("initializing...");
+
+  hank.cron("1/7 * * * * *", run_every_7_seconds);
+  hank.oneShot(30, run_once_in_30_seconds);
+}
+
+function run_once_in_30_seconds() {
+  console.log("Ok, 30 seconds have passed!!");
+}
+
+function run_every_7_seconds() {
+  console.log("I run every 7 seconds");
 }
 
 function handle_message(input: HandleMessageInput) {
