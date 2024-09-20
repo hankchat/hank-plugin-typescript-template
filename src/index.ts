@@ -14,6 +14,11 @@ hank.registerInitializeFunction(initialize);
 hank.registerMessageHandler(handle_message);
 hank.registerCommandHandler(handle_command);
 
+interface Person {
+  name: string,
+  age: number;
+}
+
 function install() {
   let stmt = PreparedStatement.create({
     sql: "CREATE TABLE IF NOT EXISTS people (name TEXT, age INTEGER)"
@@ -21,7 +26,7 @@ function install() {
   hank.dbQuery(stmt);
 }
 
-function initialize() {
+async function initialize() {
   console.log("initializing...");
 
   hank.cron("1/7 * * * * *", run_every_7_seconds);
@@ -54,4 +59,11 @@ async function handle_command(input: HandleCommandInput) {
     PreparedStatement.create({ sql: "SELECT * from people" })
   );
   console.log(JSON.stringify(people));
+
+  let person_select = PreparedStatement.create({
+    sql: "SELECT * FROM people"
+  });
+
+  let persons = await hank.dbQuery<Person>(person_select);
+  console.log(JSON.stringify(persons));
 }
