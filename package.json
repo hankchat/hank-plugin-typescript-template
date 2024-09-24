@@ -1,6 +1,6 @@
 {
   "name": "hank-plugin-typescript-template",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "A template for Hank plugins written in TypeScript.",
   "scripts": {
     "build": "tsc --noEmit && node esbuild.js && extism-js dist/index.js -i node_modules/@hank.chat/pdk/dist/plugin.d.ts -o dist/plugin.wasm"
