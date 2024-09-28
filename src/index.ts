@@ -3,16 +3,18 @@ import { hank, HandleCommandInput, HandleMessageInput, PluginMetadata } from "@h
 
 export * from "@hank.chat/pdk";
 
-hank.pluginMetadata = PluginMetadata.create({
-  name: "sample-typescript-plugin",
-  description: "A sample plugin to demonstrate some functionality.",
-  version: "0.1.0",
-  database: true,
-});
-hank.registerInstallFunction(install);
-hank.registerInitializeFunction(initialize);
-hank.registerMessageHandler(handle_message);
-hank.registerCommandHandler(handle_command);
+export function plugin() {
+  hank.pluginMetadata = PluginMetadata.create({
+    name: "sample-typescript-plugin",
+    description: "A sample plugin to demonstrate some functionality.",
+    version: "0.1.0",
+    database: true,
+  });
+  hank.registerInstallFunction(install);
+  hank.registerInitializeFunction(initialize);
+  hank.registerMessageHandler(handle_message);
+  hank.registerCommandHandler(handle_command);
+}
 
 interface Person {
   name: string,
