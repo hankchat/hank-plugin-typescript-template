@@ -1,9 +1,9 @@
-import { Metadata, PreparedStatement } from "@hank.chat/types";
-import { hank, HandleCommandInput, HandleMessageInput } from "@hank.chat/pdk";
+import { PreparedStatement } from "@hank.chat/types";
+import { hank, HandleCommandInput, HandleMessageInput, PluginMetadata } from "@hank.chat/pdk";
 
 export * from "@hank.chat/pdk";
 
-hank.pluginMetadata = Metadata.create({
+hank.pluginMetadata = PluginMetadata.create({
   name: "sample-typescript-plugin",
   description: "A sample plugin to demonstrate some functionality.",
   version: "0.1.0",
