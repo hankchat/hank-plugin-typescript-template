@@ -1,5 +1,5 @@
-import { PreparedStatement } from "@hank.chat/types";
-import { hank, HandleCommandInput, HandleMessageInput, PluginMetadata } from "@hank.chat/pdk";
+import { Command, CommandContext, HandleChatCommandInput, Message, PreparedStatement } from "@hank.chat/types";
+import { hank, HandleMessageInput, PluginMetadata } from "@hank.chat/pdk";
 
 export * from "@hank.chat/pdk";
 
@@ -8,12 +8,19 @@ export function plugin() {
     name: "sample-typescript-plugin",
     description: "A sample plugin to demonstrate some functionality.",
     version: "0.1.0",
-    database: true,
+    handlesCommands: true,
+    commandName: "ping",
+    subcommands: [
+      Command.create({
+        name: "reverse",
+        description: "Do the same thing in reverse!",
+      })
+    ]
   });
   hank.registerInstallFunction(install);
   hank.registerInitializeFunction(initialize);
   hank.registerMessageHandler(handle_message);
-  hank.registerCommandHandler(handle_command);
+  hank.registerChatCommandHandler(handle_chat_command);
 }
 
 interface Person {
@@ -43,19 +50,18 @@ function run_every_7_seconds() {
   console.log("I run every 7 seconds");
 }
 
-function handle_message(input: HandleMessageInput) {
-  const { message } = input;
-
+function handle_message(message: Message) {
   console.log(`${message.authorName}: ${message.content}`);
 }
 
-async function handle_command(input: HandleCommandInput) {
-  const { message } = input;
+async function handle_chat_command(context: CommandContext, message: Message) {
+  message.content = "Pong!";
 
-  if (message.content == "ping") {
-    message.content = "Pong!";
-    hank.sendMessage(message);
+  if (context.subcommand?.name == "reverse") {
+    message.content = [...message.content].reverse().join("");
   }
+
+  hank.sendMessage(message);
 
   let people = await hank.dbQuery(
     PreparedStatement.create({ sql: "SELECT * from people" })
