@@ -1,4 +1,4 @@
-import { Command, CommandContext,Message, PreparedStatement } from "@hank.chat/types";
+import { Command, CommandContext, Message, PreparedStatement } from "@hank.chat/types";
 import { hank, PluginMetadata } from "@hank.chat/pdk";
 
 export * from "@hank.chat/pdk";
