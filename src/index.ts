@@ -1,5 +1,5 @@
-import { Command, CommandContext, HandleChatCommandInput, Message, PreparedStatement } from "@hank.chat/types";
-import { hank, HandleMessageInput, PluginMetadata } from "@hank.chat/pdk";
+import { Command, CommandContext,Message, PreparedStatement } from "@hank.chat/types";
+import { hank, PluginMetadata } from "@hank.chat/pdk";
 
 export * from "@hank.chat/pdk";
 
@@ -19,7 +19,7 @@ export function plugin() {
   });
   hank.registerInstallFunction(install);
   hank.registerInitializeFunction(initialize);
-  hank.registerMessageHandler(handle_message);
+  hank.registerChatMessageHandler(handle_message);
   hank.registerChatCommandHandler(handle_chat_command);
 }
 
